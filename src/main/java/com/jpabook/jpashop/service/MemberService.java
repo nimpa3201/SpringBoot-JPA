@@ -2,6 +2,7 @@ package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.repository.MemberRepository;
+import com.jpabook.jpashop.repository.MemberRepositoryOld;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -41,13 +42,13 @@ public class MemberService {
 
     // 단건 조회
     public Member findOne(Long memberId) {
-        return memberRepository.findOne(memberId);
+        return memberRepository.findById(memberId).get();
     }
 
 
     @Transactional
     public void update(Long id, String name) {
-        Member findMember = memberRepository.findOne(id);
+        Member findMember = memberRepository.findById(id).get();
         findMember.setName(name);
 
 
